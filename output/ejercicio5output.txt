@@ -1,0 +1,4 @@
+# Ejercico 5:
+#cut -f2,3 mirna_human_ensembl_hg38.txt | awk '{sum+=($2-$1)} END{print sum/NR}'
+25.1639
+

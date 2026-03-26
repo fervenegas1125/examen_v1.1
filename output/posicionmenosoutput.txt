@@ -1,0 +1,4 @@
+# Ejercicio 1:
+# menor posicion:
+#cut -f3,4 coli.gff | grep "^gene" | sort -k2,2n | head -1
+190

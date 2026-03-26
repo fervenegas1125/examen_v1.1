@@ -1,0 +1,4 @@
+# mayor posicion:
+#cut -f3,4 coli.gff | grep "^gene" | sort -k2,2n | tail -1
+4640942
+

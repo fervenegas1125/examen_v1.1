@@ -1,0 +1,3 @@
+# Ejercicio 3:
+cut -f3,4,5 coli.gff | grep "^gene" | cut -f2,3 | sort | uniq -c | sort -rn | head
+

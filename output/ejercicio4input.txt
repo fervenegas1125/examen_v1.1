@@ -1,0 +1,4 @@
+# Ejercicio 4:
+#cut -f7 coli.gff |sort | uniq -c
+4786 -
+4738 +

@@ -1,0 +1,2 @@
+# Ejercicio 7:
+grep "^MR" coli_protein.faa | wc -l

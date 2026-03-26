@@ -1,0 +1,2 @@
+# Ejercicio 4:
+cut -f7 coli.gff |sort | uniq -c
