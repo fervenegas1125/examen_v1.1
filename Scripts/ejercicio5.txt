@@ -1,2 +1,20 @@
 # Ejercico 5:
 cut -f2,3 mirna_human_ensembl_hg38.txt | awk '{sum+=($2-$1)} END{print sum/NR}'
+
+#!/bin/bash
+
+#Para correr este script:
+# Bash ejercicio5.txt "archivo.txt" (en este caso, el archivo es mirna_human_ensembl_hg38.txt)
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.txt>"
+    exit 1
+fi
+
+archivo="$1"
+
+echo "--- Calcular longitud promedio en: $archivo ---"
+
+# 1. Usar awk para leer las columnas de inicio y fin, restar (Fin - Inicio) para obtener 
+#la longitud de cada fragmento, sumar todas las longitudes y dividir entre el número total de registros (NR)
+awk '{ longitud = $2 - $1; sum += longitud } END { if (NR > 0) print "Promedio:", sum/NR; else print "Archivo vacío" }' "$archivo"

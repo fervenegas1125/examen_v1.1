@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#Para correr el comando:
+#bash ejercicio1.sh "archivo.gff" (en este caso, coli.gff)
+
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.gff>"
+    exit 1
+fi
+
+archivo=$1
+
+echo "--- Resultados para: $archivo ---"
+
+#Menor posición de inicio
+# cut -f3,4 coli.gff | grep "^gene" | sort -k2,2n | head -1
+echo -n "Gen con la menor posición de inicio: "
+awk -v tipo="gene" -F "\t" '$3 == tipo {print $4}' "$archivo" | sort -n | head -1
+
+#Mayor posición de inicio
+# cut -f3,4 coli.gff | grep "^gene" | sort -k2,2n | tail -1
+echo -n "Gen con la mayor posición de inicio: "
+awk -v tipo="gene" -F "\t" '$3 == tipo {print $4}' "$archivo" | sort -n | tail -1

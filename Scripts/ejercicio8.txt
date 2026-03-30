@@ -1,3 +1,18 @@
 # Ejercicio 8:
 awk '{print $4, $1, $2, $3}' mirna_human_ensembl_hg38.txt
 
+#!/bin/bash
+
+#Para correr este script:
+#Bash ejercicio8.txt "archivo.txt" (se puede usar cualquier archivo que termine en .txt, en este caso mirna_human_ensembl_hg38.txt)
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.txt>"
+    exit 1
+fi
+
+archivo="$1"
+
+echo "--- Reordenando columnas de: $archivo ---"
+
+awk 'BEGIN { OFS="\t" } { print $4, $1, $2, $3 }' "$archivo"

@@ -1,2 +1,21 @@
 # Ejercicio 4:
 cut -f7 coli.gff |sort | uniq -c
+
+#!/bin/bash
+
+#Para correr el comando:
+# Bash ejercicio4.txt "archivo.gff" (en este caso coli.gff)
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.gff>"
+    exit 1
+fi
+
+archivo="$1"
+
+echo "--- Conteo de hebras forward y reverse  en: $archivo ---"
+
+# Filtrar con awk la columna 3, imprimir la columna 7, contar repeticiones
+awk -v tipo="gene" -F "\t" '$3 == tipo {print $7}' "$archivo" | \
+    sort | \
+    uniq -c

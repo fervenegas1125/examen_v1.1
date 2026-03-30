@@ -1,3 +1,26 @@
 # Ejercicio 2:
-cut -f3,4 coli.gff | grep "^gene" | cut -f2 | sort -n | awk 'NR>1{print $1-prev}
-{prev=$1}' | sort -n | tail -1
+#cut -f3,4 coli.gff | grep "^gene" | cut -f2 | sort -n | awk 'NR>1{print $1-prev}
+#{prev=$1}' | sort -n | tail -1
+
+#!/bin/bash
+
+#Para correrlo:
+#bash ejercicio2.txt "archivo.gff" (cualquier archivo con .gff)
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.gff>"
+    exit 1
+fi
+
+archivo="$1"
+
+echo "CAlculo de la distancia entre inicios de genes en: $archivo"
+
+# Automatización con awk -v
+awk -v tipo="gene" -F "\t" '
+    $3 == tipo { print $4 } 
+' "$archivo" | sort -n | awk '
+    NR > 1 { dist = $1 - prev; if (dist > max) max = dist }
+    { prev = $1 }
+    END { print "La distancia es:", max }
+'

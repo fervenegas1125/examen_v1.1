@@ -1,2 +1,21 @@
 # Ejercicio 7:
 grep "^MR" coli_protein.faa | wc -l
+
+#!/bin/bash
+
+#Para correr el script:
+#Bash ejercicio7.txt "archivo.faa" (puede ser cualquier cualquier archivo que termine en .faa)
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.faa>"
+    exit 1
+fi
+
+archivo="$1"
+patron="MR"
+
+echo "--- Buscar cuando se inicia con '$patron' en: $archivo ---"
+
+conteo=$(grep "^$patron" "$archivo" | wc -l)
+
+echo "Total de proteínas que inician con $patron: $conteo"

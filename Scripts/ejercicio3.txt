@@ -1,3 +1,23 @@
 # Ejercicio 3:
 cut -f3,4,5 coli.gff | grep "^gene" | cut -f2,3 | sort | uniq -c | sort -rn | head
 
+#!/bin/bash
+
+#Para correr el comando:
+#Bash ejercicio3.txt "archivo.gff" (cualquier archivo que termine en .gff, en este caso coli.gff)
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.gff>"
+    exit 1
+fi
+
+archivo="$1"
+
+echo "--- Genes repetidos en: $archivo ---"
+
+# Filtramos con awk la columna 3, imprimir columnas 4 y 5, contar repeticiones
+awk -v tipo="gene" -F "\t" '$3 == tipo {print $4, $5}' "$archivo" | \
+    sort | \
+    uniq -c | \
+    sort -rn | \
+    head

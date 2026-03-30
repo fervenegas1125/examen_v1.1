@@ -1,2 +1,23 @@
 # Ejercicio 6:
 grep -o "MR" coli_protein.faa | wc -l
+
+#!/bin/bash
+
+#Para correr este script:
+#Bash ejercicio6.txt "archivo.faa" (cualquier archivo que termine en .faa, en este cado coli_protein.faa)
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo.faa>"
+    exit 1
+fi
+
+archivo="$1"
+
+
+patron="MR"
+
+echo "--- Buscando el '$patron' en: $archivo ---"
+
+conteo=$(grep -o "$patron" "$archivo" | wc -l)
+
+echo "Total de apariciones de $patron: $conteo"
